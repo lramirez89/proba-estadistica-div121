@@ -1,0 +1,62 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\usepackage{enumitem}
+\geometry{top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm}
+
+\title{Resolución de Ejercicio: Técnicas de Conteo}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Enunciado}
+18. Disponemos de cinco cartas, cada una de ellas tiene grabada una letra: A, B, C, C y C. ¿De cuántas formas diferentes se pueden colocar en la mesa las cinco cartas, una al lado de la otra formando una hilera? Ejemplo: pueden estar colocadas de la siguiente forma ACBCC.
+
+\vspace{0.5cm}
+\hrule
+\vspace{0.5cm}
+
+\section*{Solución Paso a Paso}
+
+\subsection*{1. Análisis e identificación del modelo}
+Para determinar las distintas formas de colocar las cartas en una hilera, analizamos las características del ordenamiento:
+\begin{itemize}[label=\checkmark]
+    \item \textbf{¿Importa el orden?} Sí. Al formar una hilera, la posición relativa de cada carta genera una secuencia distinta (por ejemplo, ABC CC es diferente de CAB CC)[cite: 1].
+    \item \textbf{¿Intervienen todos los elementos?} Sí. Se solicita colocar en la mesa exactamente las cinco cartas de las que disponemos ($m=5$)[cite: 1].
+    \item \textbf{¿Existen elementos repetidos?} Sí. Dentro de nuestro conjunto total, existen elementos de la misma clase que son indistinguibles entre sí; específicamente, la letra ``C'' se repite tres veces[cite: 1].
+\end{itemize}
+
+Dado que importa el orden, intervienen todos los elementos del conjunto, pero hay elementos idénticos repetidos en la muestra, el modelo combinatorio adecuado es el de \textbf{Permutaciones con repetición}[cite: 1].
+
+\subsection*{2. Planteo matemático y cálculo}
+La fórmula estadística para calcular los ordenamientos de un conjunto de $m$ elementos donde hay $n_1, n_2, \dots, n_k$ elementos de distintas clases es[cite: 1]:
+\[ P'_{n_1, n_2, \dots, n_k} = \frac{(n_1 + n_2 + \dots + n_k)!}{n_1! \times n_2! \times \dots \times n_k!} = \frac{m!}{n_1! \times n_2! \times \dots \times n_k!} \]
+
+Definimos nuestra población total $m = 5$ cartas y desglosamos las repeticiones por clase:
+\begin{itemize}
+    \item Letra A: $n_1 = 1$
+    \item Letra B: $n_2 = 1$
+    \item Letra C: $n_3 = 3$
+\end{itemize}
+
+Procedemos a calcular, dividiendo el total de permutaciones posibles entre los ordenamientos internos de las cartas repetidas para no contabilizarlas como arreglos distintos[cite: 1]:
+\begin{align*}
+P'_{1,1,3} &= \frac{5!}{1! \times 1! \times 3!} \\
+P'_{1,1,3} &= \frac{5 \times 4 \times 3!}{1 \times 1 \times 3!} \\
+P'_{1,1,3} &= 5 \times 4 \\
+P'_{1,1,3} &= 20
+\end{align*}
+
+\subsection*{3. Conclusión}
+Existen 20 ordenamientos únicos posibles para alinear las cinco cartas dadas las repeticiones de la letra C.
+
+\vspace{0.5cm}
+
+\textbf{Respuesta:} Las cartas se pueden colocar de \textbf{20 formas diferentes}.
+
+\end{document}

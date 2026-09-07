@@ -1,0 +1,56 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\usepackage{enumitem}
+\geometry{top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm}
+
+\title{Resolución de Ejercicio: Técnicas de Conteo}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Enunciado}
+17. En una bolsa hay cuatro bolas numeradas con los dígitos 2, 4, 7 y 9. Elegimos una bola de la bolsa y anotamos su número. La bola extraída se introduce en la bolsa. Se elige una segunda bola y se anota su número. La bola extraída se vuelve a introducir en la bolsa. Finalmente se elige una tercera bola y se anota su número. ¿Cuántos números de tres cifras podemos obtener? Ejemplo: se puede obtener el número 222.
+
+\vspace{0.5cm}
+\hrule
+\vspace{0.5cm}
+
+\section*{Solución Paso a Paso}
+
+\subsection*{1. Análisis e identificación del modelo}
+Para determinar de cuántas formas se pueden formar estos números de tres cifras, analizamos las características del experimento estadístico:
+\begin{itemize}[label=\checkmark]
+    \item \textbf{¿Importa el orden?} Sí. Al construir un número de varias cifras, el orden de los dígitos altera el resultado final (por ejemplo, el número 247 es distinto al 427)[cite: 1].
+    \item \textbf{¿Intervienen todos los elementos?} No. La bolsa contiene un total de $m=4$ opciones (los dígitos 2, 4, 7, 9), de los cuales solo seleccionaremos $n=3$ para formar cada número[cite: 1].
+    \item \textbf{¿Se pueden repetir los elementos?} Sí. El enunciado indica explícitamente que la bola extraída siempre ``se vuelve a introducir en la bolsa'' antes de la siguiente extracción. Esto implica que hay reposición y un mismo dígito puede salir más de una vez (como en el ejemplo 222)[cite: 1].
+\end{itemize}
+
+Como el orden importa, no se usan todos los elementos a la vez, y existe reposición (repetición permitida), el modelo combinatorio compuesto que corresponde aplicar es el de \textbf{Variaciones con repetición}[cite: 1].
+
+\subsection*{2. Planteo matemático y cálculo}
+La fórmula estadística para calcular las variaciones con repetición de $n$ elementos elegidos de un total de $m$ opciones es[cite: 1]:
+\[ V'_{(m,n)} = m^n \]
+
+Definimos nuestra cantidad de opciones disponibles $m = 4$ (los cuatro dígitos) y la cantidad de extracciones o posiciones a llenar $n = 3$ (las tres cifras del número), y procedemos a calcular:
+\begin{align*}
+V'_{(4,3)} &= 4^3 \\
+V'_{(4,3)} &= 4 \times 4 \times 4 \\
+V'_{(4,3)} &= 64
+\end{align*}
+
+Llegaríamos al mismo resultado utilizando la regla de la multiplicación: tenemos 4 opciones posibles para la primera cifra, 4 opciones para la segunda (porque la bola regresó a la bolsa) y 4 opciones para la tercera cifra ($4 \times 4 \times 4 = 64$)[cite: 1].
+
+\subsection*{3. Conclusión}
+Al realizar tres extracciones sucesivas con reposición a partir de cuatro dígitos diferentes, se generan 64 arreglos ordenados posibles.
+
+\vspace{0.5cm}
+
+\textbf{Respuesta:} Podemos obtener \textbf{64 números} de tres cifras distintos.
+
+\end{document}

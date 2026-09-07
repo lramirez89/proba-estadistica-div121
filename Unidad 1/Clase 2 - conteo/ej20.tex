@@ -1,0 +1,57 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\usepackage{enumitem}
+\geometry{top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm}
+
+\title{Resolución de Ejercicio: Técnicas de Conteo}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Enunciado}
+20. Doce personas son condenadas a muerte, antes de morir se les permite la última gracia. Uno de ellos, excelente matemático, pide que se prorrogue la ejecución por el tiempo necesario para colocarse en una fila contra la pared en todos los órdenes posibles, realizando un cambio por minuto. El juez acepta el pedido por considerarlo razonable. ¿Por cuánto tiempo debe postergar la ejecución?
+
+\vspace{0.5cm}
+\hrule
+\vspace{0.5cm}
+
+\section*{Solución Paso a Paso}
+
+\subsection*{1. Análisis e identificación del modelo}
+Para resolver el problema, primero debemos determinar de cuántas formas distintas pueden ordenarse las 12 personas en una fila. Evaluamos las características del experimento mediante tres preguntas clave:
+\begin{itemize}[label=\checkmark]
+    \item \textbf{¿Importa el orden?} Sí, el objetivo explícito es pasar por ``todos los órdenes posibles'' en la fila.
+    \item \textbf{¿Intervienen todos los elementos?} Sí, las 12 personas deben colocarse contra la pared simultáneamente para conformar la fila.
+    \item \textbf{¿Se pueden repetir los elementos?} No, una misma persona no puede ocupar dos lugares distintos físicos al mismo tiempo (muestreo sin reposición).
+\end{itemize}
+
+Dado que importa el orden, se utilizan todos los elementos y no hay repetición, el modelo combinatorio adecuado es el de \textbf{Permutaciones sin repetición}.
+
+\subsection*{2. Planteo matemático y cálculo}
+La fórmula estadística para calcular las permutaciones de $n$ elementos es el factorial de $n$:
+\[ P_n = n! \]
+
+Definimos nuestra población total $n = 12$ personas y desarrollamos el factorial:
+\begin{align*}
+P_{12} &= 12! \\
+P_{12} &= 12 \times 11 \times 10 \times 9 \times 8 \times 7 \times 6 \times 5 \times 4 \times 3 \times 2 \times 1 \\
+P_{12} &= 479.001.600
+\end{align*}
+
+Existen exactamente 479.001.600 arreglos posibles para alinear a las doce personas.
+
+\subsection*{3. Conclusión temporal}
+El enunciado establece una tasa de cambio constante de un arreglo por minuto. Por lo tanto, el tiempo total requerido es directamente proporcional al número de permutaciones obtenidas:
+\[ \text{Tiempo total} = 479.001.600 \text{ órdenes} \times 1 \text{ min/orden} \]
+
+\vspace{0.5cm}
+
+\textbf{Respuesta:} El juez debe postergar la ejecución por \textbf{479.001.600 minutos} (lo que equivale a poco más de 911 años, demostrando por qué el matemático consideró esto una excelente última gracia).
+
+\end{document}

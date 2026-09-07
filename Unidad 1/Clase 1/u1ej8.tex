@@ -1,0 +1,180 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{booktabs}
+\usepackage{geometry}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\geometry{top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm}
+
+\title{Resolución: Estadísticas de Alturas de Plantas de Maíz}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Enunciado}
+8. Los siguientes datos recopilados en campaña muestran las alturas, en metros, de 40 tallos de plantas de maíz:
+
+\begin{center}
+\begin{tabular}{cccccccccc}
+1,06 & 1,16 & 1,21 & 0,96 & 1,17 & 1,11 & 1,03 & 1,11 & 1,20 & 1,26 \\
+1,14 & 1,15 & 1,07 & 1,18 & 1,22 & 0,97 & 1,20 & 1,11 & 1,14 & 1,09 \\
+1,18 & 1,12 & 1,15 & 1,05 & 1,24 & 1,12 & 1,19 & 1,03 & 1,19 & 1,10 \\
+1,33 & 1,04 & 1,18 & 1,12 & 1,19 & 1,08 & 1,27 & 1,30 & 1,13 & 1,13 \\
+\end{tabular}
+\end{center}
+
+\begin{enumerate}
+    \item[a.] Realizar la correspondiente distribución de frecuencias.
+    \item[b.] Graficar el histograma y su correspondiente polígono de frecuencias.
+    \item[c.] Graficar la ojiva.
+    \item[d.] Obtener, la media aritmética, la mediana, la moda, el cuartil tres, el decil ocho y el percentil veinticuatro.
+    \item[e.] Obtener la varianza y la desviación estándar.
+\end{enumerate}
+
+\vspace{1cm}
+\hrule
+\vspace{1cm}
+
+\section*{a. Distribución de Frecuencias}
+Para construir la tabla, primero ordenamos los $n=40$ datos y calculamos el rango ($R$).
+El valor mínimo es $0,96$ y el máximo es $1,33$.
+\[ R = 1,33 - 0,96 = 0,37 \]
+
+Para determinar la cantidad sugerida de intervalos ($k$), podemos aplicar la \textbf{Regla de Sturges} o el criterio de la \textbf{raíz cuadrada}:
+\[ \text{Sturges: } k \approx 1 + 3,322 \log_{10}(40) \approx 6,32 \]
+\[ \text{Raíz cuadrada: } k \approx \sqrt{40} \approx 6,32 \]
+
+Ambos criterios sugieren utilizar entre 6 y 7 clases. Optamos por $k=7$ intervalos, ya que esto nos permite calcular una amplitud teórica de:
+\[ A_{\text{teórica}} = \frac{R}{k} = \frac{0,37}{7} \approx 0,0528 \]
+
+Redondeando hacia arriba por conveniencia práctica, obtenemos una amplitud definitiva de $A = 0,06$. Esto asegura que el rango nuevo ($7 \times 0,06 = 0,42$) cubra todo el rango original. Comenzamos el primer intervalo en $0,95$ (ligeramente por debajo del mínimo) para contener correctamente todos los valores sin superponer los límites exactos de los datos.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{cccccccc}
+\toprule
+\textbf{Clases} & \textbf{Límites} & \textbf{Marca ($x_i$)} & \textbf{$f_i$} & \textbf{$F_i$} & \textbf{$h_i$} & \textbf{$H_i$} & \textbf{\%} ($h_i\%$) \\
+\midrule
+1 & $[0,95 - 1,01)$ & 0,98 & 2 & 2 & 0,050 & 0,050 & 5,0\% \\
+2 & $[1,01 - 1,07)$ & 1,04 & 5 & 7 & 0,125 & 0,175 & 12,5\% \\
+3 & $[1,07 - 1,13)$ & 1,10 & 10 & 17 & 0,250 & 0,425 & 25,0\% \\
+4 & $[1,13 - 1,19)$ & 1,16 & 11 & 28 & 0,275 & 0,700 & 27,5\% \\
+5 & $[1,19 - 1,25)$ & 1,22 & 8 & 36 & 0,200 & 0,900 & 20,0\% \\
+6 & $[1,25 - 1,31)$ & 1,28 & 3 & 39 & 0,075 & 0,975 & 7,5\% \\
+7 & $[1,31 - 1,37]$ & 1,34 & 1 & 40 & 0,025 & 1,000 & 2,5\% \\
+\midrule
+\multicolumn{3}{r}{\textbf{Total}} & \textbf{40} & & \textbf{1,000} & & \textbf{100\%} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\newpage
+\section*{b. Histograma y Polígono de Frecuencias}
+
+\begin{center}
+\begin{tikzpicture}
+  \begin{axis}[
+    width=14cm, height=8cm,
+    ymin=0, ymax=12,
+    xmin=0.9, xmax=1.42,
+    xlabel={Altura (m)},
+    ylabel={Frecuencia Absoluta ($f_i$)},
+    title={Histograma y Polígono de Frecuencias},
+    xtick={0.95, 1.01, 1.07, 1.13, 1.19, 1.25, 1.31, 1.37},
+    legend pos=north east
+  ]
+  % Histograma
+  \addplot+[ybar interval, mark=none, fill=cyan!30, draw=cyan!70!black] coordinates {
+    (0.95, 2) (1.01, 5) (1.07, 10) (1.13, 11) (1.19, 8) (1.25, 3) (1.31, 1) (1.37, 1)
+  };
+  \addlegendentry{Histograma}
+
+  % Polígono de frecuencias (ahora es estrictamente una línea sin relleno)
+  \addplot[mark=*, color=red, thick] coordinates {
+    (0.92, 0) (0.98, 2) (1.04, 5) (1.10, 10) (1.16, 11) (1.22, 8) (1.28, 3) (1.34, 1) (1.40, 0)
+  };
+  \addlegendentry{Polígono}
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+
+\section*{c. Ojiva (Frecuencias Acumuladas)}
+
+\begin{center}
+\begin{tikzpicture}
+  \begin{axis}[
+    width=14cm, height=8cm,
+    ymin=0, ymax=45,
+    xmin=0.9, xmax=1.42,
+    xlabel={Altura (m) - Límite Superior de Clase},
+    ylabel={Frecuencia Acumulada ($F_i$)},
+    title={Ojiva},
+    xtick={0.95, 1.01, 1.07, 1.13, 1.19, 1.25, 1.31, 1.37},
+    grid=both
+  ]
+  \addplot+[sharp plot, mark=*, color=orange!80!black, thick] coordinates {
+    (0.95, 0) (1.01, 2) (1.07, 7) (1.13, 17) (1.19, 28) (1.25, 36) (1.31, 39) (1.37, 40)
+  };
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+
+\section*{d. Medidas de Tendencia Central y Posición}
+
+Todos los cálculos se basan en la tabla de datos agrupados, donde $A = 0.06$ y $n=40$.
+
+\subsection*{Media aritmética ($\bar{x}$)}
+\[ \bar{x} = \frac{\sum x_i f_i}{n} = \frac{45,86}{40} = 1,1465 \text{ m} \]
+
+\subsection*{Mediana ($Me$)}
+Posición: $\frac{n}{2} = 20$. La clase mediana es $[1,13 - 1,19)$ ($F_i = 28$).
+\[ Me = L_i + \left( \frac{\frac{n}{2} - F_{i-1}}{f_i} \right) \cdot A = 1,13 + \left( \frac{20 - 17}{11} \right) \cdot 0,06 = 1,13 + 0,01636 = 1,146 \text{ m} \]
+
+\subsection*{Moda ($Mo$)}
+La clase modal es $[1,13 - 1,19)$ porque tiene la mayor frecuencia ($f_i = 11$).
+$d_1 = 11 - 10 = 1$ y $d_2 = 11 - 8 = 3$.
+\[ Mo = L_i + \left( \frac{d_1}{d_1 + d_2} \right) \cdot A = 1,13 + \left( \frac{1}{1 + 3} \right) \cdot 0,06 = 1,13 + 0,015 = 1,145 \text{ m} \]
+
+\subsection*{Cuartil Tres ($Q_3$)}
+Posición: $\frac{3n}{4} = 30$. La clase del $Q_3$ es $[1,19 - 1,25)$ ($F_i = 36$).
+\[ Q_3 = L_i + \left( \frac{30 - F_{i-1}}{f_i} \right) \cdot A = 1,19 + \left( \frac{30 - 28}{8} \right) \cdot 0,06 = 1,19 + 0,015 = 1,205 \text{ m} \]
+
+\subsection*{Decil Ocho ($D_8$)}
+Posición: $\frac{8n}{10} = 32$. La clase del $D_8$ es $[1,19 - 1,25)$.
+\[ D_8 = 1,19 + \left( \frac{32 - 28}{8} \right) \cdot 0,06 = 1,19 + 0,03 = 1,22 \text{ m} \]
+
+\subsection*{Percentil Veinticuatro ($P_{24}$)}
+Posición: $\frac{24n}{100} = 9,6$. La clase del $P_{24}$ es $[1,07 - 1,13)$ ($F_i = 17$).
+\[ P_{24} = 1,07 + \left( \frac{9,6 - 7}{10} \right) \cdot 0,06 = 1,07 + 0,0156 = 1,0856 \text{ m} \]
+
+\section*{e. Varianza y Desviación Estándar}
+Para utilizar la fórmula clásica con los datos crudos, calculamos primero la media aritmética exacta de los 40 valores individuales ($\bar{x}$):
+\[ \bar{x} = \frac{\sum_{i=1}^{n} x_i}{n} = \frac{45,73}{40} = 1,14325 \text{ m} \]
+
+\subsection*{Varianza muestral ($s_x^2$)}
+Aplicamos la fórmula clásica para la varianza de la muestra, desarrollando explícitamente la suma de las diferencias al cuadrado de cada uno de los 40 elementos respecto a la media:
+
+\begin{align*}
+s_x^2 &= \frac{1}{n - 1} \sum_{i=1}^{n} (x_i - \bar{x})^2 \\
+s_x^2 &= \frac{1}{40 - 1} \Big[ (1,06 - 1,14325)^2 + (1,16 - 1,14325)^2 + (1,21 - 1,14325)^2 + (0,96 - 1,14325)^2 \\
+&\quad + (1,17 - 1,14325)^2 + (1,11 - 1,14325)^2 + (1,03 - 1,14325)^2 + (1,11 - 1,14325)^2 \\
+&\quad + (1,20 - 1,14325)^2 + (1,26 - 1,14325)^2 + (1,14 - 1,14325)^2 + (1,15 - 1,14325)^2 \\
+&\quad + (1,07 - 1,14325)^2 + (1,18 - 1,14325)^2 + (1,22 - 1,14325)^2 + (0,97 - 1,14325)^2 \\
+&\quad + (1,20 - 1,14325)^2 + (1,11 - 1,14325)^2 + (1,14 - 1,14325)^2 + (1,09 - 1,14325)^2 \\
+&\quad + (1,18 - 1,14325)^2 + (1,12 - 1,14325)^2 + (1,15 - 1,14325)^2 + (1,05 - 1,14325)^2 \\
+&\quad + (1,24 - 1,14325)^2 + (1,12 - 1,14325)^2 + (1,19 - 1,14325)^2 + (1,03 - 1,14325)^2 \\
+&\quad + (1,19 - 1,14325)^2 + (1,10 - 1,14325)^2 + (1,33 - 1,14325)^2 + (1,04 - 1,14325)^2 \\
+&\quad + (1,18 - 1,14325)^2 + (1,12 - 1,14325)^2 + (1,19 - 1,14325)^2 + (1,08 - 1,14325)^2 \\
+&\quad + (1,27 - 1,14325)^2 + (1,30 - 1,14325)^2 + (1,13 - 1,14325)^2 + (1,13 - 1,14325)^2 \Big] \\
+s_x^2 &= \frac{1}{39} (0,25048) \approx 0,00642 \text{ m}^2
+\end{align*}
+
+\subsection*{Desviación Estándar ($s_x$)}
+\[ s_x = \sqrt{s_x^2} = \sqrt{0,00642} \approx 0,0801 \text{ m} \]
+
+\end{document}

@@ -1,0 +1,57 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\usepackage{enumitem}
+\geometry{top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm}
+
+\title{Resolución de Ejercicio: Técnicas de Conteo}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Enunciado}
+19. Se quiere elegir un comité formado por tres miembros, presidente, tesorero y secretario. Para seleccionarlo disponemos de cuatro candidatos: Arturo, Basilio, Carlos y David. ¿Cuántos comités diferentes se pueden elegir entre los cuatro candidatos? Ejemplo: que Arturo sea presidente, Carlos sea tesorero y David sea secretario.
+
+\vspace{0.5cm}
+\hrule
+\vspace{0.5cm}
+
+\section*{Solución Paso a Paso}
+
+\subsection*{1. Análisis e identificación del modelo}
+Para resolver el problema, evaluamos las características de la selección a realizar mediante tres preguntas clave:
+\begin{itemize}[label=\checkmark]
+    \item \textbf{¿Importa el orden?} Sí. Los roles dentro del comité son distintos (presidente, tesorero y secretario). No es lo mismo que Arturo sea presidente y Carlos tesorero, a que Carlos sea presidente y Arturo tesorero[cite: 1].
+    \item \textbf{¿Intervienen todos los elementos?} No. Disponemos de $m=4$ candidatos totales, pero solo seleccionaremos un subconjunto de $n=3$ de ellos para formar el comité[cite: 1].
+    \item \textbf{¿Se pueden repetir los elementos?} No. Una misma persona no puede ocupar más de un cargo al mismo tiempo en el comité (muestreo sin reposición)[cite: 1].
+\end{itemize}
+
+Dado que importa el orden, no se seleccionan todos los elementos y no hay repetición, el modelo combinatorio adecuado es el de \textbf{Variaciones sin repetición}[cite: 1].
+
+\subsection*{2. Planteo matemático y cálculo}
+La fórmula estadística para calcular los subconjuntos ordenados de $n$ elementos que pueden seleccionarse de un conjunto de $m$ elementos es[cite: 1]:
+\[ V_{(m,n)} = \frac{m!}{(m-n)!} \]
+
+Definimos nuestra población total $m = 4$ (candidatos) y el tamaño del subconjunto $n = 3$ (cargos), y desarrollamos:
+\begin{align*}
+V_{(4,3)} &= \frac{4!}{(4-3)!} \\
+V_{(4,3)} &= \frac{4!}{1!} \\
+V_{(4,3)} &= \frac{4 \times 3 \times 2 \times 1}{1} \\
+V_{(4,3)} &= 24
+\end{align*}
+
+Alternativamente, aplicando la regla de la multiplicación: hay 4 opciones para el cargo de presidente, 3 opciones restantes para el de tesorero, y 2 opciones finales para el de secretario ($4 \times 3 \times 2 = 24$)[cite: 1].
+
+\subsection*{3. Conclusión}
+Existen exactamente 24 formas diferentes de asignar los tres cargos jerárquicos entre los cuatro candidatos disponibles.
+
+\vspace{0.5cm}
+
+\textbf{Respuesta:} Se pueden elegir \textbf{24 comités} diferentes.
+
+\end{document}

@@ -1,0 +1,59 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\usepackage{enumitem}
+\geometry{top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm}
+
+\title{Resolución de Ejercicio: Técnicas de Conteo}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Enunciado}
+21. En una inmobiliaria hay 10 empleados que se organizan guardias de tres personas, los días domingo, en forma rotativa, de modo que sea equitativo para todos los empleados. Un domingo Esteban, Gonzalo y Cecilia coincidieron. ¿Dentro de cuántos domingos volverán a coincidir en la guardia?
+
+\vspace{0.5cm}
+\hrule
+\vspace{0.5cm}
+
+\section*{Solución Paso a Paso}
+
+\subsection*{1. Análisis e identificación del modelo}
+Para resolver el problema, necesitamos averiguar cuántos grupos distintos de 3 personas se pueden formar con los 10 empleados de la inmobiliaria. Evaluamos las características del experimento:
+\begin{itemize}[label=\checkmark]
+    \item \textbf{¿Importa el orden?} No. A la hora de conformar la guardia, da igual el orden en que sean nombrados o seleccionados los tres empleados (por ejemplo, Esteban-Gonzalo-Cecilia es la misma guardia que Cecilia-Esteban-Gonzalo)[cite: 1].
+    \item \textbf{¿Intervienen todos los elementos?} No. Disponemos de un conjunto total de $m=10$ empleados, pero solo seleccionaremos un subconjunto de $n=3$ de ellos para cada domingo[cite: 1].
+    \item \textbf{¿Se pueden repetir los elementos?} No. Un mismo empleado no puede ocupar dos o tres lugares en la misma guardia de forma simultánea (los elementos se eligen una única vez por muestra)[cite: 1].
+\end{itemize}
+
+Dado que no importa el orden, no se utilizan todos los elementos y no hay repetición, el modelo combinatorio adecuado es el de \textbf{Combinaciones sin repetición}[cite: 1].
+
+\subsection*{2. Planteo matemático y cálculo}
+La fórmula estadística para calcular los subconjuntos no ordenados de $n$ elementos que pueden seleccionarse de un conjunto de $m$ elementos es[cite: 1]:
+\[ C_{(m,n)} = \frac{m!}{n! \cdot (m-n)!} \]
+
+Definimos nuestra población total $m = 10$ (empleados) y el tamaño del subconjunto $n = 3$ (personas por guardia), y procedemos a calcular:
+\begin{align*}
+C_{(10,3)} &= \frac{10!}{3! \cdot (10-3)!} \\
+C_{(10,3)} &= \frac{10!}{3! \cdot 7!} \\
+C_{(10,3)} &= \frac{10 \times 9 \times 8 \times 7!}{3 \times 2 \times 1 \times 7!} \\
+C_{(10,3)} &= \frac{10 \times 9 \times 8}{6} \\
+C_{(10,3)} &= \frac{720}{6} \\
+C_{(10,3)} &= 120
+\end{align*}
+
+Existen exactamente 120 combinaciones distintas de guardias posibles.
+
+\subsection*{3. Conclusión temporal}
+Dado que el sistema es rotativo y equitativo para todos, se deben agotar todas las combinaciones posibles antes de que un mismo grupo vuelva a repetirse. Como se realiza una guardia por semana (los domingos), tomará exactamente 120 domingos recorrer todas las combinaciones distintas hasta que Esteban, Gonzalo y Cecilia vuelvan a coincidir.
+
+\vspace{0.5cm}
+
+\textbf{Respuesta:} Volverán a coincidir dentro de \textbf{120 domingos}.
+
+\end{document}
