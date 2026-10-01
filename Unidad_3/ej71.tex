@@ -1,0 +1,73 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{geometry}
+
+\geometry{top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm}
+
+\begin{document}
+
+\section*{Ejercicio 71: Teorema de Bayes y Distribución Binomial}
+
+\textbf{Enunciado:} Se dispone de dos urnas, la $1^\circ$ urna contiene el 70\% de bolillas blancas y el 30\% de negras y la $2^\circ$ urna tiene el 30\% de blancas y el 70\% de negras[cite: 6]. Se selecciona una de éstas al azar y se toman 10 bolillas, una tras otra con reemplazo, resultando ser 8 blancas y 2 negras[cite: 6]. ¿Cuál es la probabilidad de que la muestra provenga de la $1^\circ$ urna? (0,994) ¿ y de la $2^\circ$ urna? (0,006)[cite: 6]
+
+\vspace{0.5cm}
+\hrule
+\vspace{0.5cm}
+
+\subsection*{Resolución paso a paso}
+
+Este ejercicio requiere combinar dos modelos probabilísticos fundamentales. Primero, como las extracciones se realizan ``con reemplazo'', el conteo de bolillas blancas sigue una \textbf{Distribución Binomial}. Segundo, como se nos pide la probabilidad de una causa (qué urna se eligió) a partir de una evidencia observada (8 blancas y 2 negras), debemos aplicar el \textbf{Teorema de Bayes}.
+
+\subsubsection*{1. Definición de Sucesos y Probabilidades a Priori}
+Definimos los eventos correspondientes a la elección de la urna. Como se selecciona una al azar y no hay información que favorezca a una sobre la otra, asumimos equiprobabilidad:
+\begin{itemize}
+    \item $U_1$: Se elige la urna 1. $\implies P(U_1) = 0,5$
+    \item $U_2$: Se elige la urna 2. $\implies P(U_2) = 0,5$
+\end{itemize}
+
+Definimos el evento evidencia, que es el resultado del experimento empírico:
+\begin{itemize}
+    \item $E$: Se extraen exactamente 8 bolillas blancas y 2 negras en 10 intentos.
+\end{itemize}
+
+\subsubsection*{2. Cálculo de Verosimilitudes (El modelo Binomial)}
+Necesitamos calcular la probabilidad condicional de que ocurra la evidencia $E$ dependiendo de cada urna, es decir, $P(E \mid U_1)$ y $P(E \mid U_2)$.
+
+Como el experimento consiste en $n=10$ ensayos independientes (por haber reposición), calculamos la probabilidad usando la fórmula de la función de masa de probabilidad binomial: $P(X=k) = \binom{n}{k} p^k (1-p)^{n-k}$.
+
+\vspace{0.3cm}
+\noindent \textbf{Si estamos en la Urna 1:}
+La probabilidad de éxito (sacar blanca) es $p = 0,70$.
+$$ P(E \mid U_1) = \binom{10}{8} (0,70)^8 (0,30)^2 = 45 \cdot 0,057648 \cdot 0,09 \approx 0,23347 $$
+
+\vspace{0.3cm}
+\noindent \textbf{Si estamos en la Urna 2:}
+La probabilidad de éxito (sacar blanca) es $p = 0,30$.
+$$ P(E \mid U_2) = \binom{10}{8} (0,30)^8 (0,70)^2 = 45 \cdot 0,00006561 \cdot 0,49 \approx 0,001447 $$
+
+\subsubsection*{3. Probabilidad Total de la Evidencia}
+Calculamos la probabilidad total de observar el evento $E$ promediando los escenarios mediante la Regla de Probabilidad Total:
+\begin{align*}
+P(E) &= P(E \mid U_1)P(U_1) + P(E \mid U_2)P(U_2) \\
+P(E) &= (0,23347 \cdot 0,5) + (0,001447 \cdot 0,5) \\
+P(E) &= 0,116735 + 0,0007235 \\
+P(E) &\approx 0,1174585
+\end{align*}
+
+\subsubsection*{4. Teorema de Bayes (Probabilidades a Posteriori)}
+Finalmente, calculamos la probabilidad de que la muestra provenga de cada urna habiendo observado la evidencia.
+
+\vspace{0.3cm}
+\noindent \textbf{Probabilidad de que provenga de la Urna 1:}
+$$ P(U_1 \mid E) = \frac{P(E \mid U_1)P(U_1)}{P(E)} = \frac{0,116735}{0,1174585} \approx 0,9938 $$
+El resultado redondeado a tres decimales es \textbf{0,994}.
+
+\vspace{0.3cm}
+\noindent \textbf{Probabilidad de que provenga de la Urna 2:}
+$$ P(U_2 \mid E) = \frac{P(E \mid U_2)P(U_2)}{P(E)} = \frac{0,0007235}{0,1174585} \approx 0,00615 $$
+El resultado redondeado a tres decimales es \textbf{0,006}.
+
+\end{document}

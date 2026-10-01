@@ -1,0 +1,68 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{geometry}
+\usepackage{enumitem}
+
+\geometry{top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm}
+
+\begin{document}
+
+\begin{center}
+    \textbf{\Large Probabilidad y Estadística} \\
+    \vspace{0.2cm}
+    \textit{Universidad Tecnológica Nacional}
+\end{center}
+
+\vspace{0.5cm}
+
+\section*{Ejercicio 76: Probabilidad Condicional y Reducción del Espacio}
+
+\textbf{Enunciado:} De 100 personas que solicitaron empleo en una firma, 40 tenían experiencia anterior, y 30 tenían un certificado profesional[cite: 6]. Sin embargo, 20 de los solicitantes contaban con ambos antecedentes[cite: 6]. Determine la probabilidad condicional de que un solicitante aleatoriamente elegido tenga un certificado, dado que tiene alguna experiencia anterior[cite: 6].
+
+\vspace{0.5cm}
+\hrule
+\vspace{0.5cm}
+
+\subsection*{Resolución paso a paso}
+
+Este problema nos permite observar cómo la información adicional (una condición) altera el tamaño de nuestro espacio muestral. Lo abordaremos desde dos enfoques equivalentes para consolidar el concepto.
+
+\subsubsection*{1. Definición de Sucesos y Extracción de Datos}
+Primero, definimos los sucesos de interés y anotamos las cardinalidades (cantidad de casos) provistas por el enunciado:
+\begin{itemize}
+    \item $\Omega$: Conjunto total de solicitantes de empleo ($|\Omega| = 100$).
+    \item $E$: El solicitante tiene experiencia anterior ($|E| = 40$).
+    \item $C$: El solicitante tiene un certificado profesional ($|C| = 30$).
+    \item $E \cap C$: El solicitante posee ambos antecedentes ($|E \cap C| = 20$).
+\end{itemize}
+
+El objetivo es calcular $P(C \mid E)$, es decir, la probabilidad de que el candidato tenga certificado \textbf{dado} que ya sabemos como un hecho cierto que tiene experiencia.
+
+\subsubsection*{2. Enfoque Intuitivo: Reducción del Espacio Muestral}
+Al saber que el evento $E$ ha ocurrido, nuestro universo de análisis descarta a las 60 personas sin experiencia. El nuevo espacio muestral se reduce estrictamente al conjunto $E$.
+
+\begin{itemize}
+    \item \textbf{Casos Posibles (Nuevo Universo):} Son las personas que cumplen la condición de tener experiencia ($|E| = 40$).
+    \item \textbf{Casos Favorables:} Dentro de ese nuevo universo de 40 personas, las únicas que tienen certificado son las que pertenecen a la intersección de ambos conjuntos ($|E \cap C| = 20$).
+\end{itemize}
+
+Aplicando la regla de Laplace sobre este universo restringido:
+$$ P(C \mid E) = \frac{\text{Casos Favorables dentro de } E}{\text{Casos Totales en } E} = \frac{|E \cap C|}{|E|} = \frac{20}{40} = 0,5 $$
+
+\subsubsection*{3. Enfoque Formal: Definición Axiomática}
+El mismo resultado se obtiene aplicando la fórmula general de probabilidad condicional sobre las probabilidades marginales del espacio muestral original ($\Omega$).
+
+Calculamos las probabilidades de los sucesos dividiendo por el total histórico de 100 solicitantes:
+$$ P(E) = \frac{40}{100} = 0,40 $$
+$$ P(E \cap C) = \frac{20}{100} = 0,20 $$
+
+Finalmente, reemplazamos en la definición de la probabilidad condicional:
+$$ P(C \mid E) = \frac{P(E \cap C)}{P(E)} = \frac{0,20}{0,40} = 0,5 $$
+
+\vspace{0.3cm}
+\noindent \textbf{Conclusión:} Al poseer el dato de que el candidato tiene experiencia previa, la probabilidad de que cuente con un certificado profesional es del $50\%$.
+
+\end{document}

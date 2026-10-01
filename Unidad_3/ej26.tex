@@ -1,0 +1,64 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{geometry}
+\geometry{top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm}
+\usepackage{enumitem}
+
+\begin{document}
+
+\section*{Ejercicio 26: Probabilidad y Combinatoria}
+
+\textbf{Enunciado:} De las 42 librerías que hay en una localidad, solo 8 están especializadas en alguna disciplina. ¿Cuál es la probabilidad de que en una muestra aleatoria de 6 librerías:
+\begin{enumerate}[label=\alph*)]
+    \item Todas estén especializadas.
+    \item Solo la mitad estén especializadas.
+    \item Haya alguna especializada?
+\end{enumerate}
+
+\vspace{0.5cm}
+\hrule
+\vspace{0.5cm}
+
+\subsection*{Resolución paso a paso}
+
+Este experimento consiste en extraer una muestra sin reposición donde el orden de selección no es relevante. Por lo tanto, abordaremos el problema utilizando el modelo de combinaciones simples y la regla de Laplace ($P = \frac{\text{Casos Favorables}}{\text{Casos Posibles}}$), lo que se formaliza a través de la Distribución Hipergeométrica.
+
+\subsubsection*{1. Definición del espacio muestral (Casos Posibles)}
+Primero, determinamos todas las formas posibles de conformar un grupo de 6 librerías a partir del total disponible en la localidad.
+\begin{itemize}
+    \item Población total ($N$): 42 librerías.
+    \item Tamaño de la muestra ($n$): 6 librerías.
+\end{itemize}
+La cantidad de grupos diferentes que se pueden formar, sin importar el orden, es:
+$$ \text{Casos Posibles} = \binom{42}{6} = \frac{42!}{6!(42-6)!} = 5.245.786 $$
+
+\subsubsection*{2. Análisis de los incisos (Casos Favorables)}
+Para calcular los casos favorables en cada inciso, dividimos la población en dos subconjuntos mutuamente excluyentes: las 8 librerías especializadas y las 34 librerías no especializadas ($42 - 8 = 34$).
+
+\vspace{0.3cm}
+\noindent \textbf{a) Probabilidad de que todas (las 6) estén especializadas} \\
+Debemos seleccionar 6 librerías del subgrupo de las 8 especializadas, y obligatoriamente 0 del subgrupo de las 34 no especializadas.
+$$ \text{Casos Favorables}_A = \binom{8}{6} \cdot \binom{34}{0} = 28 \cdot 1 = 28 $$
+$$ P(A) = \frac{28}{5.245.786} \approx 0,00000533 \quad (5,33 \times 10^{-6}) $$
+
+\vspace{0.3cm}
+\noindent \textbf{b) Probabilidad de que solo la mitad (3) estén especializadas} \\
+La muestra de 6 debe contener exactamente 3 especializadas y, por lo tanto, las 3 restantes deben ser no especializadas. Aplicamos el principio de multiplicación entre las combinaciones de ambos subgrupos:
+$$ \text{Casos Favorables}_B = \binom{8}{3} \cdot \binom{34}{3} = 56 \cdot 5.984 = 335.104 $$
+$$ P(B) = \frac{335.104}{5.245.786} \approx 0,06388 $$
+
+\vspace{0.3cm}
+\noindent \textbf{c) Probabilidad de que haya \textit{alguna} (al menos una) especializada} \\
+Calcular las probabilidades de que haya 1, 2, 3, 4, 5 o 6 especializadas y sumarlas es un proceso largo. En combinatoria, cuando aparece la frase "al menos una", suele ser más eficiente trabajar con el suceso complementario: calcular la probabilidad de que \textbf{ninguna} librería de la muestra sea especializada y restarle ese valor al total ($1$).
+
+El evento "ninguna especializada" implica extraer las 6 librerías del subgrupo de las 34 no especializadas:
+$$ \text{Casos Favorables}_{\text{Ninguna}} = \binom{8}{0} \cdot \binom{34}{6} = 1 \cdot 1.344.904 = 1.344.904 $$
+$$ P(\text{Ninguna}) = \frac{1.344.904}{5.245.786} \approx 0,25638 $$
+
+Finalmente, la probabilidad de que haya al menos una es el complemento:
+$$ P(C) = 1 - P(\text{Ninguna}) = 1 - 0,25638 = 0,74362 $$
+
+\end{document}

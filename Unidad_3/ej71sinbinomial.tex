@@ -1,0 +1,76 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{geometry}
+
+\geometry{top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm}
+
+\begin{document}
+
+\section*{Ejercicio 71: Teorema de Bayes con Enfoque Secuencial}
+
+\textbf{Enunciado:} Se dispone de dos urnas, la $1^\circ$ urna contiene el 70\% de bolillas blancas y el 30\% de negras y la $2^\circ$ urna tiene el 30\% de blancas y el 70\% de negras. Se selecciona una de éstas al azar y se toman 10 bolillas, una tras otra con reemplazo, resultando ser 8 blancas y 2 negras. ¿Cuál es la probabilidad de que la muestra provenga de la $1^\circ$ urna? (0,994) ¿ y de la $2^\circ$ urna? (0,006)
+
+\vspace{0.5cm}
+\hrule
+\vspace{0.5cm}
+
+\subsection*{Resolución paso a paso}
+
+Este ejercicio se resuelve aplicando el \textbf{Teorema de Bayes}. Si bien extraer ``8 blancas y 2 negras en cualquier orden'' invita a usar combinatoria (Distribución Binomial), podemos simplificar el modelo razonando sobre una única trayectoria secuencial.
+
+Dado que el factor combinatorio $\binom{10}{8}$ que cuenta las permutaciones afectaría por igual tanto al numerador como al denominador en la fórmula de Bayes, este se cancela analíticamente. Por lo tanto, basta con calcular la probabilidad de \textbf{una sola secuencia específica} (por ejemplo: sacar primero 8 blancas seguidas y luego 2 negras).
+
+\subsubsection*{1. Definición de Sucesos y Probabilidades a Priori}
+Definimos los eventos correspondientes a la elección de la urna. Como se selecciona una al azar, asumimos equiprobabilidad:
+\begin{itemize}
+    \item $U_1$: Se elige la urna 1. $\implies P(U_1) = 0,5$
+    \item $U_2$: Se elige la urna 2. $\implies P(U_2) = 0,5$
+\end{itemize}
+
+Definimos el evento evidencia temporal:
+\begin{itemize}
+    \item $E$: Ocurre una secuencia particular de 8 bolillas blancas y 2 negras (ej. B-B-B-B-B-B-B-B-N-N).
+\end{itemize}
+
+\subsubsection*{2. Cálculo de Verosimilitudes (Regla de la Multiplicación)}
+Como las extracciones son ``con reemplazo'', el resultado de una extracción no afecta a la siguiente (eventos independientes). La probabilidad de la secuencia completa es simplemente el producto de las probabilidades individuales.
+
+\vspace{0.3cm}
+\noindent \textbf{Si estamos en la Urna 1:}
+La probabilidad marginal de sacar blanca es $0,70$ y negra $0,30$.
+$$P(E \mid U_1) = (0,70)^8 \cdot (0,30)^2 = 0,05764801 \cdot 0,09 \approx 0,005188$$
+
+\vspace{0.3cm}
+\noindent \textbf{Si estamos en la Urna 2:}
+La probabilidad marginal de sacar blanca es $0,30$ y negra $0,70$.
+$$P(E \mid U_2) = (0,30)^8 \cdot (0,70)^2 = 0,00006561 \cdot 0,49 \approx 0,00003215$$
+
+\subsubsection*{3. Probabilidad Total de la Evidencia}
+Calculamos la probabilidad total de que ocurra esta secuencia específica promediando los escenarios posibles:
+\begin{align*}
+P(E) &= P(E \mid U_1)P(U_1) + P(E \mid U_2)P(U_2) \\
+P(E) &= (0,005188 \cdot 0,5) + (0,00003215 \cdot 0,5) \\
+P(E) &= 0,002594 + 0,000016075 \\
+P(E) &\approx 0,002610
+\end{align*}
+
+\subsubsection*{4. Teorema de Bayes (Probabilidades a Posteriori)}
+Finalmente, calculamos la probabilidad de cada causa habiendo observado la secuencia.
+
+\vspace{0.3cm}
+\noindent \textbf{Probabilidad de que provenga de la Urna 1:}
+$$P(U_1 \mid E) = \frac{P(E \mid U_1)P(U_1)}{P(E)} = \frac{0,002594}{0,002610} \approx 0,9938$$
+El resultado redondeado a tres decimales es \textbf{0,994}.
+
+\vspace{0.3cm}
+\noindent \textbf{Probabilidad de que provenga de la Urna 2:}
+$$P(U_2 \mid E) = \frac{P(E \mid U_2)P(U_2)}{P(E)} = \frac{0,000016075}{0,002610} \approx 0,00615$$
+El resultado redondeado a tres decimales es \textbf{0,006}.
+
+\vspace{0.3cm}
+\noindent \textit{Nota pedagógica: Aunque obviamos multiplicar por $\binom{10}{8}=45$, las proporciones finales $0,994$ y $0,006$ se mantienen idénticas porque la probabilidad a posteriori es una medida relativa entre las ramas del árbol.}
+
+\end{document}

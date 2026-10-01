@@ -1,0 +1,109 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{enumitem}
+
+\geometry{top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm}
+
+\begin{document}
+
+\begin{center}
+    \textbf{\Large Probabilidad y Estadística} \\
+    \vspace{0.2cm}
+    \textit{Universidad Tecnológica Nacional}
+\end{center}
+
+\vspace{0.5cm}
+
+\section*{Ejercicio 58: Probabilidad Condicional en Tablas de Doble Entrada}
+
+\textbf{Enunciado:} En una empresa con 200 empleados, 100 hombres y 100 mujeres, hay que seleccionar a varios de ellos, por sorteo, para formar un comité que supervise las decisiones de la directora. La directora propone que los integrantes del comité sean no fumadores. Los empleados se distribuyen según la siguiente tabla:
+
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+ & \textbf{HOMBRES} & \textbf{MUJERES} \\
+\midrule
+\textbf{FUMAN} & 70 & 10 \\
+\textbf{NO FUMAN} & 30 & 90 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{enumerate}[label=\alph*.]
+    \item Si la elección se hace sin restricciones, hallar la probabilidad de que al elegir un empleado al azar resulte: i) hombre $P(H)$, ii) mujer $P(M)$.
+    \item Si el sorteo se hace entre los no fumadores, hallar: $P(H)$ y $P(M)$.
+    \item Hallar $P(H|F)$; $P(M|F)$; $P(F|H)$; $P(NO \ F|H)$; $P(F|M)$; $P(NO \ F|M)$.
+\end{enumerate}
+
+\vspace{0.5cm}
+\hrule
+\vspace{0.5cm}
+
+\subsection*{Resolución paso a paso}
+
+Antes de comenzar, es conveniente expandir la tabla de contingencia sumando las filas y columnas para obtener los totales marginales, los cuales representan nuestros distintos espacios muestrales posibles.
+
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+ & \textbf{Hombres (H)} & \textbf{Mujeres (M)} & \textbf{TOTALES} \\
+\midrule
+\textbf{Fuman (F)} & 70 & 10 & \textbf{80} \\
+\textbf{No Fuman (NF)} & 30 & 90 & \textbf{120} \\
+\midrule
+\textbf{TOTALES} & \textbf{100} & \textbf{100} & \textbf{200} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{0.3cm}
+\noindent \textbf{a) Elección sin restricciones (Probabilidades Marginales)} \\
+El universo total de análisis son los 200 empleados. Aplicamos la regla de Laplace para sucesos equiprobables ($P = \frac{\text{Casos Favorables}}{\text{Casos Totales}}$):
+\begin{itemize}
+    \item i) Probabilidad de elegir un hombre:
+    $$ P(H) = \frac{100}{200} = 0,5 $$
+    \item ii) Probabilidad de elegir una mujer:
+    $$ P(M) = \frac{100}{200} = 0,5 $$
+\end{itemize}
+
+\vspace{0.3cm}
+\noindent \textbf{b) Sorteo entre los No Fumadores} \\
+Al imponer una condición, el espacio muestral se reduce. Ya no evaluamos sobre los 200 empleados, sino únicamente sobre la fila de ``No Fuman'', que contiene a 120 personas. Esta es la esencia de la probabilidad condicional, que denotamos como $P(A|B)$.
+\begin{itemize}
+    \item Probabilidad de que sea hombre sabiendo que no fuma:
+    $$ P(H \mid NF) = \frac{30}{120} = \frac{1}{4} = 0,25 $$
+    \item Probabilidad de que sea mujer sabiendo que no fuma:
+    $$ P(M \mid NF) = \frac{90}{120} = \frac{3}{4} = 0,75 $$
+\end{itemize}
+\textit{Nota: Observamos que $P(H|NF) + P(M|NF) = 1$, ya que abarcan el 100\% del nuevo universo de no fumadores.}
+
+\vspace{0.3cm}
+\noindent \textbf{c) Cálculo de Probabilidades Condicionales} \\
+Aplicamos la misma lógica de reducción del espacio muestral (leyendo la fila o columna correspondiente) para cada caso:
+
+\begin{itemize}
+    \item $P(H \mid F)$: Sabiendo que fuma (universo de 80 personas), probabilidad de ser hombre.
+    $$ P(H \mid F) = \frac{70}{80} = \frac{7}{8} = 0,875 $$
+
+    \item $P(M \mid F)$: Sabiendo que fuma (universo de 80 personas), probabilidad de ser mujer.
+    $$ P(M \mid F) = \frac{10}{80} = \frac{1}{8} = 0,125 $$
+
+    \item $P(F \mid H)$: Sabiendo que es hombre (universo de 100 personas de la primera columna), probabilidad de que fume.
+    $$ P(F \mid H) = \frac{70}{100} = 0,7 $$
+
+    \item $P(NF \mid H)$: Sabiendo que es hombre, probabilidad de que no fume.
+    $$ P(NF \mid H) = \frac{30}{100} = 0,3 $$
+
+    \item $P(F \mid M)$: Sabiendo que es mujer (universo de 100 personas de la segunda columna), probabilidad de que fume.
+    $$ P(F \mid M) = \frac{10}{100} = 0,1 $$
+
+    \item $P(NF \mid M)$: Sabiendo que es mujer, probabilidad de que no fume.
+    $$ P(NF \mid M) = \frac{90}{100} = 0,9 $$
+\end{itemize}
+
+\end{document}
